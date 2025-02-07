@@ -1,0 +1,19 @@
+qd:
+  initial_population: 100  # Smaller because trajectories are much longer
+                           # and we want to start evolving levels sooner /
+                           # reduce the number of random levels generated
+  init_warm_start_updates: 0
+  warm_start_updates: 2 
+  es_sigma0: 0.1  # NOTE: we use a higher sigma0 for ACCEL than DIVA
+  archive_dims: [8000]  # Same as PLR buffer size
+  # max_steps:              1000      
+  # episodes_per_trial:     2 
+  # policy_num_steps:       500      
+  # num_processes:          4
+  # levels_per_meta_update  = 4     <- (500 / (2 * 1000)) * 4
+  batch_size: 2
+  updates_per_iter: 2 
+  num_emitters: 2
+  # sols_per_qd_update      = 8     <- (2 * 2 * 2)
+  update_interval: 2
+  # abundance_ratio         = 2     <- (8 / 4 / 2)

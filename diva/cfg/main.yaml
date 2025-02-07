@@ -1,0 +1,45 @@
+name: 'Placeholder name'
+date: ${now:%Y-%m-%d}-${now:%H-%M-%S}
+
+# Output directory
+hydra:
+  run:
+    dir: ./_logs/hydra/${now:%Y-%m-%d}/${now:%H-%M-%S}
+
+# General
+seed: 123
+deterministic_execution: False
+dense_rewards: False
+skip_eval: False
+profile: False
+
+vec_env_kwargs: null
+action_space: null
+
+use_popart: False
+
+# GPU
+cuda_device: 0
+device: 'cuda'
+
+# Logging
+log_level: info
+run_eval: True
+debug: False
+
+# Wandb
+use_wandb: False
+log_videos: True  # TODO
+wandb_label: 'Placeholder'
+wandnb_tags: [] 
+wandb_group: ''
+wandb_note: 'Placeholder'
+
+domain.qd_enabled_env: False
+
+defaults:
+  - _self_
+  - meta: varibad      # Meta-RL learner
+  - dist: diva         # Task distribution (e.g. UED/SSED methods)
+  - domain: toygrid    # Domain
+  - variant: vt1       # Algorithm variant (e.g. different hyperparameter settings)

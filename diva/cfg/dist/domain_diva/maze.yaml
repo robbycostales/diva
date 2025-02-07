@@ -1,0 +1,13 @@
+qd:
+  init_warm_start_updates: 0  
+  warm_start_updates: 10000
+  measures: 
+    - 'task_path_dist'
+    - 'task_manhattan_dist'
+  init_archive_dims: None
+  archive_dims: [50, 50] 
+  initial_population: 10
+  batch_size: 5
+  emitter_type: 'me'
+  mutation_percentage: 0.02
+  bias_new_solutions: True

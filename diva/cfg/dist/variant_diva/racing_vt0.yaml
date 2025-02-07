@@ -1,0 +1,9 @@
+qd:  # Best archive used in paper
+  measures: 
+    - 'total_angle_changes'
+    - 'com_x'
+  # Objective (ALIGNMENT over CY and VY) + randomization
+  meas_alignment_objective: True
+  meas_alignment_measures: 
+    - 'com_y var_y'
+  randomize_objective: True

@@ -1,0 +1,81 @@
+
+
+qd: 
+  ## Global default values
+  use_flat_archive: False  # Do we use a flat archive?
+  no_sim_objective: True
+  warm_start_only: False
+  warm_start_no_sim_objective: True
+  # Use PLR to sample levels for training instead of sampling from archive. 
+  # Useful for PLR/ACCEL who uses QD for updates, but want to sample via PLR.
+  use_plr_for_training: False  
+  dual_warm_start_updates: null
+
+  # ----------------                DEFAULTS                 ---------------- #
+  ## Warm-start (WS)
+  ws_log_interval: 5000 
+  initial_population: 1000
+  ## Number of WS updates
+  init_warm_start_updates: 0  
+  warm_start_updates: 80000
+  ## Batches
+  num_emitters: 5
+  batch_size: 8  # total batch size is (num_emitters * batch_size)
+  ## Objectives
+  gt_diversity_objective: False  # Use genotype-based diversity objective.
+  meas_diversity_objective: False  # Use measure-based diversity objective.
+  meas_diversity_measures: []
+  meas_alignment_objective: False  # Use measure-based alignment objective.
+  meas_alignment_measures: []
+  randomize_objective: False  # Use random objective (better than constant because *stochasticity*). Will not use any other objective!
+  bias_new_solutions: False  # Slightly bias newer solutions by adding a slowly incrementing constant float to the objective
+  ## Mutations 
+  emitter_type: 'me'  # 'es' for continuous
+  # Discrete mutations
+  stepwise_mutations: False
+  use_constant_mutations: False
+  mutations_constant: 4
+  mutation_percentage: 0.02  
+  # Continuous mutations
+  es_sigma0: 0.01
+  ## Archive 
+  measures: []
+  archive_dims: []  # Dimensions of final archive (used for WS2).
+  init_archive_dims: []  # Dimensions of archive for WS1.
+  ## Automatic bounds (used by except Toygrid)
+  automatic_bounds: True
+  automatic_bounds_num_samples: 100
+  automatic_bounds_percentage: 0.8
+  ## Refreshing stale solutions
+  refresh_archive: False  # Do we periodically update stale solutions in the archive?
+  sslu_threshold: 100  # How many steps we allow solutions to without their objectives being updated.
+  ## Sample mask
+  update_sample_mask: False  # Do we periodically update the sample mask to bring it closer to the target region?
+  sample_mask_min_solutions: 40
+  sparsity_reweighting: False
+  sparsity_reweighting_sigma: 0.1
+  ## Misc. mechanisms
+  load_archive_from: ''
+  load_archive_run_index: 0
+  plr_integration: False  # Do we integrate PLR into QD training?
+
+  # ----------------             DEPRECATED                  ---------------- #
+  # Measure selector
+  use_measure_selector: False
+  measure_selector_num_dims: 2
+  measure_selector_range: [-0.2, 1.2]
+  measure_selector_num_samples: 500
+  measure_selector_resolution: 50
+  measure_selector_dim_red_method: 'vae'
+  measure_selector_use_all_measures: False
+  measure_selector_use_neg_samples: False
+  unique_measure_selector: False
+  # Inserting downstream samples into the archive
+  num_downstream_samples_to_use: 0  # Number of downstream samples to use for QD
+  # KD for defining prior over archive
+  kd_smoothing_coef: 1.0  # Smoothing coefficient for KD
+  use_kd: False  # Use KD for QD
+  kd_num_samples: 100  # Number of samples for KD
+  update_interval: 5  # Update interval for QD; one QD update per n meta-RL updates
+  # Async QD updates during training
+  async_updates: False

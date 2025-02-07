@@ -1,0 +1,19 @@
+# Base belief oracle (oracle meta-RL) learner config
+
+defaults:
+  - base/varibad.yaml    # First take VariBAD config
+  - _self_               # And apply the changes in this config file
+
+learning_script: 'metalearner'
+single_task_mode: False
+
+# ----------------             VariBAD MODS                  ---------------- #
+
+# (1) 
+pass_latent_to_policy: False
+pass_belief_to_policy: True
+# (2)
+policy_latent_embedding_dim: null 
+policy_belief_embedding_dim: 64  # TODO: define per domain
+# (3)
+norm_belief_for_policy: False

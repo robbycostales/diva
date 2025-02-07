@@ -1,0 +1,14 @@
+qd: 
+  init_warm_start_updates: 0
+  warm_start_updates: 4
+  # episodes_per_trial:     2
+  # max_steps:              30       
+  # policy_num_steps:       60
+  # num_processes:          8   
+  # levels_per_meta_update  = 1     <- (60 / (2 * 30)) * 8
+  batch_size: 4
+  updates_per_iter: 4
+  num_emitters: 1
+  # sols_per_qd_update      = 16    <- (4 * 4 * 1)
+  update_interval: 1 
+  # abundance_ratio         = 2     <- (16 / 8 / 1)

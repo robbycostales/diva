@@ -1,0 +1,40 @@
+# Domain config: Racing
+
+# ----------------              DOMAIN SETTINGS              ---------------- #
+# Needed to do: 
+# https://stackoverflow.com/questions/74314778/nameerror-name-glpushmatrix-is-not-defined
+
+# Domain proper
+episodes_per_trial: 2
+max_steps: 1000
+ued_env_id: 'CarRacing-BezierQD-v0'
+reg_env_id: 'CarRacing-Bezier-v0'
+gt_type: 'CP-32'
+has_genotype: True
+gt_is_continuous: True
+
+# Training
+num_frames: 2e7
+
+# State/policy info
+state_is_dict: False
+state_is_image: False
+
+# Logging, saving, evaluation
+log_interval: 10
+save_interval: 1000
+save_intermediate_models: False
+eval_interval: 100
+eval_save_video: True
+video_fps: 15
+racing_fps: 15
+racing_obs_type: 'f15'
+vis_interval: 500
+results_log_dir: null
+
+# Default domain kwargs passed to the environment
+kwargs:
+  fps: 'racing_fps'
+  obs_type: 'racing_obs_type'
+  max_steps: 'max_steps'
+  gt_type: 'gt_type'

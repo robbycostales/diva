@@ -1,0 +1,35 @@
+# DIVA+
+
+defaults:
+  - diva.yaml           # Inherit from DIVA
+  - _self_              # And apply the changes in this config file
+  - optional domain_diva-plus@_here_: '${domain}.yaml'
+  - optional variant_diva-plus@_here_: '${domain}_${variant}.yaml'
+
+name: 'diva-plus'
+
+ued: True
+
+qd:
+  # PLR args
+  plr_integration: True
+  # Warm-start
+  init_warm_start_updates: 0  # NOTE: These are only set to zero at the moment because we assume we're loading an archive
+  warm_start_updates: 2
+  # Loading archive
+  load_archive_run_index: 0  # Which W&B seed index to load archive from
+  # Population logistics
+  batch_size: 2
+  num_emitters: 2
+  updates_per_iter: 1
+  update_interval: 4
+  log_interval: 50
+  initial_population: 0
+  no_sim_objective: False
+  warm_start_no_sim_objective: False
+  use_plr_for_training: True
+
+plr: 
+  env_generator: 'gen'
+  replay_prob: 1.0
+  level_replay_rho: 0.0

@@ -1,0 +1,13 @@
+qd: 
+  init_warm_start_updates: 80000
+  warm_start_updates: 80000
+  measures: 
+    - 'parity_first_stone'
+    - 'latent_state_diversity'
+    - 'average_manhattan_to_optimal'
+  init_archive_dims: [1, 100, 300]
+  archive_dims: [5, 150, 150]
+  batch_size: 5
+  update_sample_mask: True 
+  sample_mask_min_solutions: 40
+  bias_new_solutions: True

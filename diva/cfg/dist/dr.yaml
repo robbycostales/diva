@@ -1,0 +1,18 @@
+# DR + PLR (renamed from gen)
+
+defaults:
+  - _plr@_here_
+  - _qd@_here_
+  - _self_
+
+name: 'dr'
+
+use_plr: True  # We need 
+use_qd: False
+
+ued: True
+
+plr: 
+  level_replay_strategy: 'random'
+  domain_randomization: True   # sets plr_level_replay_strategy='random' in main.py
+  env_generator: 'gen'

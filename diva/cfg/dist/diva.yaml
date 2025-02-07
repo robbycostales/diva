@@ -1,0 +1,19 @@
+# DIVA
+
+defaults:
+  - _plr@_here_
+  - _qd@_here_
+  - _self_
+  - optional domain_diva@_here_: '${domain}.yaml'
+  - optional variant_diva@_here_: '${domain}_${variant}.yaml'
+
+name: 'diva'
+
+# Key settings
+use_qd: True
+use_plr: True
+ued: True
+
+plr:
+  env_generator: 'gen'  # We use random objective to get unifom samples
+  buffer_size_from_qd: True

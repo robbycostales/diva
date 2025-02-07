@@ -1,0 +1,137 @@
+# @package _global_
+# Base VariBAD (meta-RL learner) config
+
+learning_script: 'metalearner'
+single_task_mode: False
+meta: 'varibad'
+explore: null
+
+defaults:
+  - _self_  # Apply the changes in this config file
+  - optional domain_varibad@_here_: '${domain}.yaml'
+
+# NOTE: Defaults below are from Alchemy. The 'domain-specific' indications
+# mean that each domain should override these values in their own config.
+# We also note where specific domains have values that differ from all others. 
+
+# ----------------                POLICY                     ---------------- #
+
+policy:
+  # (1) What to pass to the policy (note this is after the encoder)
+  pass_state: True
+  pass_latent: True
+  pass_belief: False
+  pass_task: False
+  # (2) Using separate encoders for the different inputs ("None" uses no encoder)
+  state_embedding_dim: 64  # domain-specific
+  latent_embedding_dim: 64  # domain-specific
+  belief_embedding_dim: null
+  task_embedding_dim: null
+  # (3) Normalising (inputs/rewards/outputs)
+  norm_state: True
+  norm_latent: True
+  norm_belief: True
+  norm_task: True
+  norm_rew: True
+  norm_actions_pre_sampling: False
+  norm_actions_post_sampling: False
+  norm_rew_clip_param: 10.0 
+  # (4) Network
+  layers: [128, 128]  # domain-specific
+  activation_function: 'tanh'  # Racing differs
+  initialisation: 'normc'  # Racing differs
+  anneal_lr: False
+  use_beta_distribution: False  # Racing differs
+  # (5) RL algorithm
+  method: 'ppo'
+  optimiser: 'adam'
+  # (6) PPO specific
+  ppo:
+    num_epochs: 2  # domain-specific
+    num_minibatch: 4
+    use_huberloss: True
+    use_clipped_value_loss: True
+    clip_param: 0.05  # Racing differs
+  # (7) Other hyperparameters
+  lr: 0.0007
+  num_processes: 8  # domain-specific
+  num_steps: 40  # domain-specific
+  eps: 1e-8
+  init_std: 1.0
+  value_loss_coef: 0.5
+  entropy_coef: 0.01
+  gamma: 0.99  # domain-specific
+  use_gae: True
+  tau: 0.95
+  use_proper_time_limits: False
+  max_grad_norm: 0.5
+
+# ----------------                  VAE                      ---------------- #
+
+vae:
+  # (8) General
+  lr: 0.001
+  buffer_size: 100000  # Racing differs
+  precollect_len: 5000
+  buffer_add_thresh: 1
+  batch_num_trajs: 25  # Racing differs
+  tbptt_stepsize: null  # Racing MAY differ
+  subsample_elbos: null  # Racing differs
+  subsample_decodes: null  # Racing differs
+  avg_elbo_terms: False
+  avg_reconstruction_terms: False
+  num_updates: 3  # domain-specific
+  pretrain_len: 0
+  kl_weight: 0.01
+  split_batches_by_task: False
+  split_batches_by_elbo: False
+  # (9) Encoder
+  action_embedding_size: 8  # domain-specific
+  state_embedding_size: 16  # domain-specific
+  reward_embedding_size: 16  # domain-specific
+  encoder_layers_before_gru: []
+  encoder_gru_hidden_size: 128  # domain-specific
+  encoder_layers_after_gru: []
+  latent_dim: 5  # domain-specific
+  # (10) Decoder: rewards
+  decode_reward: True
+  rew_loss_coeff: 1.0
+  input_prev_state: False
+  input_action: False
+  reward_decoder_layers: [64, 32]  # domain-specific
+  multihead_for_reward: False  # domain-specific
+  rew_pred_type: 'bernoulli'  # domain-specific
+  # (11) Decoder: state transitions
+  decode_state: False
+  state_loss_coeff: 1.0
+  state_decoder_layers: [32, 32]  # Toygrid differs (even though unused)
+  state_pred_type: 'deterministic'
+  # (12) Decoder: ground-truth task ("varibad oracle", after Humplik et al. 2019)
+  decode_task: False
+  task_loss_coeff: 1.0
+  task_decoder_layers: [32, 32]
+  task_pred_type: 'task_id'
+
+  encoder_max_grad_norm: null
+  decoder_max_grad_norm: null
+
+  # ----------------               ABLATIONS                   ---------------- #
+
+  # (13) For the VAE
+
+  disable_decoder: False
+  disable_stochasticity_in_latent: False
+  disable_kl_term: False
+  decode_only_past: False
+  kl_to_gauss_prior: False
+  # (14) Combining vae and RL loss
+
+  rlloss_through_encoder: False
+  add_nonlinearity_to_latent: False
+  vae_loss_coeff: 1.0
+  # (15) For the policy training
+  sample_embeddings: False
+  # (16) For other things
+  disable_metalearner: False
+
+  use_ensemble: False

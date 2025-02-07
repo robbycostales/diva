@@ -1,0 +1,5 @@
+# Base RL (non-metaRL learner) config
+
+learning_script: 'learner'
+single_task_mode: False
+

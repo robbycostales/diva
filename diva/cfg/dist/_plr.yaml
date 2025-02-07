@@ -1,0 +1,25 @@
+# PLR default params, used by a number of PLR variants
+
+defaults: 
+  - _self_
+  - optional domain__plr@_here_: '${domain}.yaml'  # domain overrides
+
+plr: 
+  buffer_size_from_qd: False
+  domain_randomization: False
+  level_replay_score_transform: 'power'
+  level_replay_temperature_start: 1.0
+  level_replay_temperature_end: 1.0
+  level_replay_strategy: 'positive_value_loss'
+  level_replay_eps: 0.05
+  level_replay_schedule: 'fixed'
+  level_replay_rho: 0.5
+  replay_prob: 0.5
+  level_replay_alpha: 0.0
+  staleness_coef: 0.7
+  staleness_transform: 'power'
+  staleness_temperature: 1.0
+  weight_log_interval: 10
+  # to override
+  seed_buffer_size: null
+

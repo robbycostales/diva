@@ -1,0 +1,27 @@
+# (2)
+policy_state_embedding_dim: 64  # seems standard
+policy_latent_embedding_dim: 64  # seems standard
+# (3)
+norm_rew_for_policy: True 
+# (4)
+policy_layers: [128, 128]  # 128 is on higher end; for complex task
+# (6)
+ppo_num_epochs: 2  
+# (7)
+num_processes: 8  # 16 is too many for memory expense of Alchemy envs (?)
+policy_num_steps: 60  # We run two episodes in each environment per update
+policy_gamma: 0.99  # Because longish horizon
+# (8)
+num_vae_updates: 3
+# (9)
+action_embedding_size: 8
+state_embedding_size: 16
+reward_embedding_size: 16
+encoder_gru_hidden_size: 128
+latent_dim: 10  # Set larger than default=5, given complexity of Alchemy task distribution
+# (10)
+reward_decoder_layers: [64, 32]
+multihead_for_reward: False
+rew_pred_type: 'bernoulli'
+# (11)
+state_decoder_layers: [64, 32]  # Toygrid differs (even though unused)

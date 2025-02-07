@@ -1,0 +1,11 @@
+
+name: 'oracle'
+
+use_plr: False
+use_qd: False
+ued: False
+
+plr.env_generator: 'sb'
+
+qd: null
+plr: null

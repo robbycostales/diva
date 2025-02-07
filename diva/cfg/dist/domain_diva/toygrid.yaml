@@ -1,0 +1,12 @@
+qd:
+  init_warm_start_updates: 0
+  warm_start_updates: 100000
+  measures: 
+    - 'x_pos'
+    - 'y_pos'
+  archive_dims: [5, 9]
+  stepwise_mutations: True
+  use_constant_mutations: True
+  mutations_constant: 4
+  # Toygrid is the only domain where we do not use automatic bounds
+  automatic_bounds: False

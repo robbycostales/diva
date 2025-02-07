@@ -1,0 +1,17 @@
+# Base RL2 (meta-RL) learner config
+
+defaults:
+  - base/varibad.yaml    # First take VariBAD config
+  - _self_                # And apply the changes in this config file
+
+learning_script: 'metalearner'
+single_task_mode: False
+meta: 'rl2'
+
+# ----------------             VariBAD MODS                  ---------------- #
+
+disable_decoder: False
+disable_kl_term: True
+add_nonlinearity_to_latent: True
+rlloss_through_encoder: True
+latent_dim: 128  # DEBUG - should this be a domain specific override? 

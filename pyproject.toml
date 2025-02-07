@@ -1,0 +1,11 @@
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+extend-select = ["I"] # adding isort rules since i will be using ruff on CLI as well as for import sorting
+unfixable = ["F401"] # do not remove unused imports
+ignore = [
+    "E261",  # Ignore space before inline comment (DEBUG: doesn't work)
+    "E262",  # Ignore inline comment should start with '# '  ""
+    "F722",  # Ignore syntax error in forward reference (for jaxtyping annotation)
+]

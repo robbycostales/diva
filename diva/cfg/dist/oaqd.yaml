@@ -1,0 +1,6 @@
+# In Oracle-populated archive QD case, we use a different train/archive environment
+archive_env_name: '${domain.eval_env_name}'
+
+name: 'oaqd'
+
+ued: True

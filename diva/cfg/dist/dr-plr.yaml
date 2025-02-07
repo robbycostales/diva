@@ -1,0 +1,10 @@
+# DR + PLR (renamed from plr_gen)
+
+use_plr: True
+ued: True
+
+name: 'dr-plr'
+
+plr: 
+  env_generator: 'gen'
+

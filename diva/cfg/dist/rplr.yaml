@@ -1,0 +1,8 @@
+# Order of config precident (from lowest to highest)
+
+defaults:
+  - accel.yaml          # First take ACCEL config
+  - _self_              # And apply the changes in this config file
+
+ued: True
+qd.initial_population: 10e000

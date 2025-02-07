@@ -1,0 +1,35 @@
+# Toygrid domain
+
+# ----------------              DOMAIN SETTINGS              ---------------- #
+
+# Domain proper
+domain: 'toygrid'
+episodes_per_trial: 2
+ued_env_id: 'ToyGridQD-v0'
+reg_env_id: 'ToyGrid-v0'
+size: 11
+gt_type: 'a24s11'
+has_genotype: True
+gt_is_continuous: False
+
+# Training
+num_frames: 1e7
+
+# State/policy info
+state_is_dict: False
+state_is_image: False
+
+# Logging, saving, evaluation
+log_interval: 100
+save_interval: 1000
+save_intermediate_models: False
+eval_interval: 100
+eval_save_video: True
+video_fps: 10
+vis_interval: 500
+results_log_dir: null
+
+# Default domain kwargs passed to the environment
+kwargs:
+  gt_type: 'gt_type'
+  size: 'size'

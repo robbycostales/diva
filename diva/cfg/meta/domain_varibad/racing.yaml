@@ -1,0 +1,39 @@
+
+policy:
+  # (2)
+  state_embedding_dim: 64
+  latent_embedding_dim: 64
+  # (3)
+  norm_rew: False
+  # (4) 
+  layers: [128] 
+  activation_function: 'relu'
+  initialisation: 'orthogonal'
+  use_beta_distribution: True
+  # (6)
+  ppo:
+    num_epochs: 8
+    clip_param: 0.01  # I think this got slightly better results than 0.05
+  # (7)
+  num_processes: 4  # Because bloated env (16 too many) 
+  num_steps: 500  #
+  gamma: 0.99  # (because long horizon)
+  # (8)
+
+vae:
+  num_updates: 3 
+  buffer_size: 1000  # Default 100_000 is too big for racing because trajectories are long
+  batch_num_trajs: 10  # Trajectories too long to use default=25 in batch
+  tbptt_stepsize: null  # We actually realized that TBPTT is not necessary for racing
+  subsample_elbos: 100  # Trajectories too long to use all
+  subsample_decodes: 100  # Trajectories too long to use all
+  # (9)
+  action_embedding_size: 8
+  state_embedding_size: 16
+  reward_embedding_size: 16
+  encoder_gru_hidden_size: 128
+  latent_dim: 5
+  # (10)
+  reward_decoder_layers: [64, 32]
+  multihead_for_reward: False  
+  rew_pred_type: 'bernoulli'

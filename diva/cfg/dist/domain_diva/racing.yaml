@@ -1,0 +1,12 @@
+qd:
+  init_warm_start_updates: 5e4  
+  warm_start_updates: 2e5
+  init_archive_dims: [500, 500]
+  archive_dims: [500, 500]
+  initial_population: 2000
+  emitter_type: 'es'
+  es_sigma0: 0.01  # NOTE: no difference from 0.1 on results
+  update_sample_mask: True
+  sample_mask_min_solutions: 1000
+
+  # NOTE: see diva_variant for measures and other archive specifications

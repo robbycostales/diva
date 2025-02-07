@@ -1,0 +1,30 @@
+# From Gridworld/Keys (and originally from Rooms)
+
+defaults:
+  - base/varibad.yaml    # First take VariBAD config
+  - _self_               # And apply the changes in this config file
+
+# ----------------             EXPLORATION                   ---------------- #
+
+# HyperX bonuses
+exploration_bonus_hyperstate: True
+exploration_bonus_vae_error: True
+# Weights for the rewards bonuses
+weight_exploration_bonus_hyperstate: 10.0
+weight_exploration_bonus_state: 10.0
+weight_exploration_bonus_belief: 10.0
+weight_exploration_bonus_vae_error: 1.0
+anneal_exploration_bonus_weights: True
+# Hyperparameters for the random network
+rnd_lr: 1e-4
+rnd_batch_size: 128
+rnd_update_frequency: 1
+rnd_buffer_size: 10000000
+rnd_output_dim: 128
+rnd_prior_net_layers: [256, 256]
+rnd_predictor_net_layers: [256, 256]
+rnd_norm_inputs: False
+rnd_init_weight_scale: 10.0
+# Other settings
+intrinsic_rew_clip_rewards: 10.0
+state_expl_idx: null

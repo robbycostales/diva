@@ -1,0 +1,61 @@
+# ACCEL
+
+defaults:
+  - diva.yaml        # Inherit from DIVA to get QD settings
+  - _self_           # And apply the changes in this config file
+  - optional domain_accel@_here_: '${domain}.yaml'
+
+name: 'accel'
+
+ued: True
+
+qd:
+  # We now need to simulate solutions 
+  no_sim_objective: False
+  # We use a flat archive for our buffer
+  use_flat_archive: True
+  # We now use PLR to sample levels for training
+  use_plr_for_training: True
+  # We don't log outside of WS for DIVA (DIVA uses ws_log_interval)
+  log_interval: 50
+
+  # Domains should set these so that we produce solutions at a rate that keeps 
+  # up with how often we're sampling solutions (which differs per domain because
+  # trajectory lengths / steps per update are different)
+  warm_start_updates: 2
+  batch_size: null
+  updates_per_iter: null  # Number of QD updates per meta-RL updates
+  num_emitters: null
+  update_interval: null  # We do one QD update per <interval> meta-RL updates
+
+  initial_population: 100
+
+plr:
+  replay_prob: 1.0  # we always sample from replay (new levels are added automatically)
+  level_replay_rho: 0.0
+
+
+# A note on domain overrides:
+# 
+# NOTE: many params are inherited from DIVA; we mostly need to tailor the 
+#   rate at which we evaluate new levels to the rate at which we sample, 
+#   which differs per domain because trajectory lengths / steps per update.
+#   in each of the _plr_domain configs, we set these values to create an 
+#   abundance ratio of around 2, which we decided balanced fairness with
+#   computational efficiency (even with a ratio of 1, ACCEL is very
+#   computationally expensive).
+# Definitions:
+# levels_per_meta_update    
+#   = number of training levels encountered (USED) per meta-RL update
+#   = (policy_num_steps / (max_steps * episodes_per_trial)) * num_processes
+# sols_per_qd_update
+#   = number of NEW solutions evaluated per QD update
+#   = (qd.batch_size * qd.updates_per_iter * qd.num_emitters)
+# abundance_ratio
+#   = ratio of NEW solutions evaluated to solutions USED by meta-learner
+#      (a higher number is favorable for search but more expensive)
+#   = (sols_per_qd_update / levels_per_meta_update) / qd.update_interval
+
+
+
+

@@ -1,0 +1,9 @@
+qd:  # Misspecified archive used in paper
+  measures: 
+    - 'total_angle_changes'
+    - 'area_to_length_ratio'
+  # Objective (DIVERSITY over CY)
+  meas_diversity_objective: True
+  meas_diversity_measures: 
+    - 'com_y'
+  randomize_objective: False  # NO randomization because diversity covers this
