@@ -101,9 +101,7 @@ For `entity`, either enter your username or organization, and for project, enter
 
 ## Reproducing results
 
-To reproduce results for the GridNav environment, run:
-
-The following command structure can be used for reproducing the main results: 
+The following command structure can be used for reproducing the main results (within `diva`): 
 
 ```bash
 python main.py wandb_label=<wandb_label> domain=<domain> meta=<meta> dist=<dist>
