@@ -91,7 +91,7 @@ wandb login
 wandb login --verify
 ```
 
-From `qd_metarl`, run `wandb_init.sh` to set necessary environment variables.
+From `diva`, run `wandb_init.sh` to set necessary environment variables.
 For `entity`, either enter your username or organization, and for project, enter
 `diva`, or any other name you would like to use:
 

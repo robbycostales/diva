@@ -11,7 +11,6 @@ from omegaconf import OmegaConf
 from torch.utils.tensorboard import SummaryWriter
 
 from diva.utils.torch import DeviceConfig
-from diva.wandb_config import ENTITY, PROJECT
 
 
 class TBLogger:
@@ -49,9 +48,7 @@ class TBLogger:
             os.makedirs(self.full_output_folder)
         with open(os.path.join(self.full_output_folder, 'config.json'), 'w') as f:
             config = OmegaConf.to_container(args, resolve=True)
-            config.update(device=DeviceConfig.DEVICE.type)
-            print(type(config))
-            
+            config.update(device=DeviceConfig.DEVICE.type)            
             json.dump(config, f, indent=2)
 
     def add(self, name, value, x_pos):
@@ -80,6 +77,7 @@ class TBLogger:
 class WandBLogger(TBLogger):
     """Logger that logs to WandB (and still uses TBLogger as backup)."""
     def __init__(self, args, exp_label, notes='', tags=list()):
+        from diva.wandb_config import ENTITY, PROJECT
         config = OmegaConf.to_container(args, resolve=True)
         dir_path = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
         dir_path = os.path.join(dir_path, '_logs/_wandb')

@@ -11,7 +11,7 @@ dm_alchemy @ git+https://github.com/robbycostales/dm_alchemy.git
 xminigrid @ git+https://github.com/robbycostales/xland-minigrid.git
 
 # Math
-numpy #==1.22.1
+numpy==1.26.4
 scipy
 scikit-learn
 einops
@@ -27,7 +27,7 @@ ipympl
 
 # Others
 gymnasium
-matplotlib
+matplotlib==3.9.2  # future version currently breaks our code
 seaborn
 tqdm
 psutil
@@ -46,15 +46,13 @@ click
 bokeh
 jupyter-server-proxy
 
-# Maze
+# General
 gym-minigrid
 scikit-image
-
-# QD+MetaRL
 gym==0.25.1 # ==0.18.0
 chardet #==5.1.0
 xxhash #==3.3.0
-moviepy #==1.0.3
+moviepy==1.0.3  # bug in nov 2024 release broke our code
 
 # Logging
 wandb #==0.15.8

@@ -8,8 +8,6 @@ import tempfile
 import numpy as np
 import wandb
 
-from diva.wandb_config import ENTITY, PROJECT
-
 
 def hash_name(long_name):
     """Used to condense W&B labels (`long_name`) to artifact name of appropriate length.
@@ -40,6 +38,7 @@ def solutions_from_artifact(artifact):
 
 def download_archive_data(run_name, run_index=0):
     """ For a given run, defined by name and index, download wandb data for heatmap plotting. """
+    from diva.wandb_config import ENTITY, PROJECT
     # Select relevant runs
     api = wandb.Api(timeout=120) 
     entity = ENTITY
