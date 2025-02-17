@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # Enabling Adaptive Agent Training in Open-Ended Simulators by Targeting Diversity
 
-The official repository for the NeurIPS 2024 paper *[Enabling Adaptive Agent Training in Open-Ended Simulators by Targeting Diversity (Costales &  Nikolaidis)](https://arxiv.org/abs/2411.04466)*. If you find the code helpful, please cite the corresponding paper:
+The official repository for the NeurIPS 2024 paper *[Enabling Adaptive Agent Training in Open-Ended Simulators by Targeting Diversity (Costales &  Nikolaidis)](https://robbycostales.com/divapaper)*. If you find the code helpful, please cite the corresponding paper:
 
 ```bibtex
 @inproceedings{
